@@ -56,10 +56,14 @@ const Practices: React.FC<PracticesProps> = ({ onBook }) => {
               onMouseLeave={() => handleMouseLeave(practice.id)}
             >
               <div 
-                className={`relative w-full h-full transform-style-preserve-3d shadow-lg rounded-3xl preserve-3d ${
+                className={`relative w-full h-full transform-style-preserve-3d shadow-lg rounded-3xl preserve-3d transition-transform duration-[1600ms] ease-out-expo ${
                   flippedId === practice.id ? 'rotate-y-180' : ''
                 }`}
-                style={{ transition: 'transform 1.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)' }}
+                style={{ 
+                  transformStyle: 'preserve-3d',
+                  // Fallback duration in inline style if tailwind class doesn't pick up immediately
+                  transition: 'transform 1.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+                }}
               >
                 
                 {/* Front */}
@@ -77,17 +81,18 @@ const Practices: React.FC<PracticesProps> = ({ onBook }) => {
                 </div>
 
                 {/* Back */}
-                <div className="absolute w-full h-full backface-hidden rounded-3xl overflow-hidden bg-[#5A6C57] text-white rotate-y-180 flex flex-col justify-center items-center p-8 text-center">
+                <div className="absolute w-full h-full backface-hidden rounded-3xl overflow-hidden bg-[#5A6C57] text-white rotate-y-180 flex flex-col justify-center items-center p-8 text-center z-10">
                   <h3 className="font-tenor text-3xl mb-4 uppercase tracking-wider">{practice.title}</h3>
                   <p className="font-cormorant text-2xl italic mb-6 opacity-90">{practice.subtitle}</p>
                   <p className="font-urbanist leading-relaxed">{practice.description}</p>
                   
                   <button 
                     onClick={(e) => {
-                      e.stopPropagation();
-                      onBook();
+                      e.preventDefault();
+                      e.stopPropagation(); // Empêche le retournement de la carte sur mobile
+                      onBook(); // Ouvre le modal
                     }}
-                    className="mt-8 px-8 py-3 bg-white/90 backdrop-blur-sm text-[#2C2C2C] rounded-full uppercase tracking-widest text-sm font-semibold shadow-lg hover:bg-white hover:scale-105 transition-all duration-300"
+                    className="relative z-50 mt-8 px-8 py-3 bg-white/90 backdrop-blur-sm text-[#2C2C2C] rounded-full uppercase tracking-widest text-sm font-semibold shadow-lg hover:bg-white hover:scale-105 hover:shadow-xl transition-all duration-300 cursor-pointer"
                   >
                     Réserver
                   </button>
@@ -103,9 +108,9 @@ const Practices: React.FC<PracticesProps> = ({ onBook }) => {
                   onClick={(e) => {
                     e.stopPropagation();
                     if (!isHoverDevice()) {
-                       handleClick(practice.id);
+                       handleClick(practice.id); // Flip on mobile
                     } else {
-                       onBook(); 
+                       onBook(); // Direct book on desktop (rarely hit as card flips on hover)
                     }
                   }}
                   className="px-6 py-2 bg-white/20 backdrop-blur-md border border-white/40 text-white rounded-full uppercase tracking-widest text-xs font-semibold"
