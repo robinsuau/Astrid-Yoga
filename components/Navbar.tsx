@@ -23,7 +23,7 @@ const Navbar: React.FC = () => {
   return (
     <nav className="fixed top-0 w-full px-[5%] py-5 flex justify-between items-center z-[1000] bg-[rgba(250,249,246,0.95)] backdrop-blur-md border-b border-black/5 transition-all duration-300">
       <div className="font-cormorant text-3xl font-semibold text-[#5A6C57] tracking-tighter cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth'})}>
-        Yoga Astrid
+        Astrid Yoga
       </div>
 
       {/* Desktop Links */}

@@ -9,7 +9,7 @@ const IntroMat: React.FC = () => {
       }}
     >
       <div className="opacity-0 translate-y-4 animate-fade-in-logo font-tenor text-4xl tracking-widest uppercase">
-        Yoga Astrid
+        Astrid Yoga
       </div>
     </div>
   );
