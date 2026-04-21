@@ -1,5 +1,6 @@
 {
-  "name": "Astrid Yoga",
-  "description": "A serene, aesthetic Yoga studio application featuring fluid animations, flip-card interactions, and booking capabilities, designed with a nature-inspired palette.",
-  "requestFramePermissions": []
+  "name": "Yoga avec Astrid",
+  "description": "Juriste de formation, j'ai choisi de me consacrer à ma passion et enseigner le yoga. Découvrez une pratique bienveillante alliant mouvement, respiration et méditation.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
 }
